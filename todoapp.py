@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''Week 11 Flask'''
 
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect
 import re
 app = Flask(__name__)
 
@@ -21,14 +21,11 @@ def submit():
     priority = request.form['priority']
 
     if re.match(emailPattern, email) is None:
-        # flash("Not a valid email.")
         return redirect('/')
     elif len(newItem) == 0:
-        # flash("No item listed.")
         return redirect('/')
-    # elif priority not in ('Low', 'Medium', 'High'):
-    # elif priority == "Choose a Priority":
-    #     return redirect('/')
+    elif priority not in ('low', 'medium', 'high'):
+        return redirect('/')
     else:
         toDoList.append((email, newItem, priority))
         return redirect('/')
@@ -39,4 +36,4 @@ def clear():
     return redirect('/')
 
 if __name__ == "__main__":
-    app.run(port=8000)
+    app.run()
