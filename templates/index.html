@@ -68,6 +68,13 @@
         <td>{{ item[0] }}</td>
         <td>{{ item[1] }}</td>
         <td>{{ item[2] }}</td>
+        <td><form action="/delete" method="post">
+            <input type="text" name='email' hidden="true" value="{{ item[0] }}"/>
+            <input type="text" name='deleteItem' hidden="true" value="{{ item[1] }}"/>
+            <input type="text" name='priority' hidden="true" value="{{ item[2] }}"/>
+            <input type="submit" value="Delete"></input>
+            </form>
+        </td>
       </tr>
       {% endfor %}
     </table>
@@ -78,7 +85,7 @@
       <input type="text" name="email" placeholder="Email"></input>
       <input type="text" name="newItem" placeholder="Task"></input>
       <select name="priority">
-        <option selected disabled value="default">Choose a Priority</option>
+        <option disabled value="default">Choose a Priority</option>
         <option value="low">Low</option>
         <option value="medium">Medium</option>
         <option value="high">High</option>
@@ -88,6 +95,9 @@
 
   <form action="/clear" method="post">
     <input type="submit" value="Clear">
+  </form>
+  <form action="/save" method="post">
+    <input type="submit" value="Save">
   </form>
   <h1> </h1>
   <img src="http://i.imgur.com/x0ml8.png">
